@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Excellence_Ajax>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Excellence_Ajax>
+    </modules>
+</config> 

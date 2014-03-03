@@ -1,0 +1,18 @@
+<?php $_code=$this->getMethodCode() ?>
+<ul class="form-list" id="payment_form_<?php echo $_code ?>" style="display:none;">
+    <li>
+        <label for="<?php echo $_code ?>_check_no" class="required"><em>*</em><?php echo $this->__('Check No#') ?></label>
+        <span class="input-box">
+            <input type="text" title="<?php echo $this->__('Check No#') ?>" class="input-text required-entry" id="<?php echo $_code ?>_check_no" name="payment[check_no]" value="<?php echo $this->htmlEscape($this->getInfoData('check_no')) ?>" />
+        </span>
+    </li>
+    <li>
+        <label for="<?php echo $_code ?>_check_date" class="required"><em>*</em><?php echo $this->__('Check Date:') ?></label>
+        <span class="input-box">
+            <input type="text" title="<?php echo $this->__('Check Date:') ?>" class="input-text required-entry" id="<?php echo $_code ?>_check_date" name="payment[check_date]" value="<?php echo $this->htmlEscape($this->getInfoData('check_date')) ?>" />
+        </span>
+    </li>
+</ul>
+<div>
+	<?php echo $this->getMethod()->getConfigData('message');?>
+</div>

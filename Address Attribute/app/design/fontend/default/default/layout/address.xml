@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <customer_account_create>
+    	<reference name='customer_form_register'>
+			<action method='setTemplate'><template>address/persistent/customer/form/register.phtml</template></action>
+    	</reference>
+    </customer_account_create>
+    <customer_address_form>
+    	<reference name='customer_address_edit'>
+    		<action method='setTemplate'><template>address/customer/address/edit.phtml</template></action>
+    	</reference>
+    </customer_address_form>
+    <checkout_onepage_index>
+    	<reference name='checkout.onepage.billing'>
+    		<action method='setTemplate'><template>address/checkout/onepage/billing.phtml</template></action>
+    	</reference>
+    	<reference name='checkout.onepage.shipping'>
+    		<action method='setTemplate'><template>address/checkout/onepage/shipping.phtml</template></action>
+    	</reference>
+    </checkout_onepage_index>
+</layout> 

@@ -1,0 +1,37 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $collection = $this->getCollection(); ?>
+<div class="page-title">
+    <h1><?php echo $this->__('My Collection') ?></h1>
+</div>
+<?php echo $this->getPagerHtml(); ?>
+<?php if($collection->getSize()): ?>
+<table class="data-table" id="my-custom-table">
+    <col width="1" />
+    <col width="1" />
+    <col />
+    <col width="1" />
+    <col width="1" />
+    <col width="1" />
+    <thead>
+        <tr>
+            <th><?php echo $this->__('ID #') ?></th>
+            <th><?php echo $this->__('Title') ?></th>
+            <th><span class="nobr"><?php echo $this->__('Created') ?></span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $_odd = ''; ?>
+        <?php foreach ($collection as $_obj): ?>
+        <tr>
+            <td><?php echo $_obj->getCollectionId() ?></td>
+            <td><span class="nobr"><?php echo $_obj->getTitle(); ?></span></td>
+            <td><?php echo $this->formatDate($_obj->getCreatedTime()) ?></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<script type="text/javascript">decorateTable('my-custom-table');</script>
+<?php echo $this->getPagerHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('The collection is empty.'); ?></p>
+<?php endif ?>

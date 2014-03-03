@@ -1,0 +1,35 @@
+<?php if (($_shippingRateGroups = $this->getEstimateRates())): ?>
+<form id="co-shipping-method-form-drop" action="<?php echo $this->getUrl('checkout/cart/estimateUpdatePost') ?>">
+	<select id='drop_estimate_method' name="estimate_method">
+		<option value='-1'>Please Select Shipping Method</option>
+		<?php 
+		foreach ($_shippingRateGroups as $code => $_rates) { 
+		$str = $this->getCarrierName($code);
+		foreach ($_rates as $_rate){ 
+			$str2 = $str . ' - ' . $_rate->getMethodTitle();
+			
+			$_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax());
+			$_incl = $this->getShippingPrice($_rate->getPrice(), true);
+			$str2 .= ' ['. $_excl;
+			if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl) { 
+				$str2 .= ' '. $this->__('Incl. Tax'); echo $_incl;
+			}
+			$str2 .= '] ';
+		?>
+		<option <?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' selected="selected"' ?> value="<?php echo $this->htmlEscape($_rate->getCode()) ?>"><?php echo $str2;?></option>
+		<?php } 
+		} ?>
+	</select>
+</form>
+<script type="text/javascript">
+	document.observe("dom:loaded", function() {
+		$('drop_estimate_method').observe('change',function(){
+			if($('drop_estimate_method').getValue() == -1){
+				alert('Please Select Shipping Method');
+			}else{
+				$('co-shipping-method-form-drop').submit();
+			}
+		});
+	});
+</script>
+<?php endif; ?>

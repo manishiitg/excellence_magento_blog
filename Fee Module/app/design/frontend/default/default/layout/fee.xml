@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <sales_order_view>
+        <reference name="order_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_order_view>
+    <sales_order_print>
+        <reference name="order_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_order_print>
+    <sales_email_order_items>
+        <reference name="order_totals">
+           <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_email_order_items>
+
+    <sales_order_invoice>
+        <reference name="invoice_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_order_invoice>
+    <sales_order_printinvoice>
+        <reference name="invoice_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_order_printinvoice>
+    <sales_email_order_invoice_items>
+        <reference name="invoice_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_email_order_invoice_items>
+
+    <sales_order_creditmemo>
+        <reference name="creditmemo_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_order_creditmemo>
+    <sales_order_printcreditmemo>
+        <reference name="creditmemo_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_order_printcreditmemo>
+    <sales_email_order_creditmemo_items>
+        <reference name="creditmemo_totals">
+            <block type="fee/sales_order_total" name="fee.sales.order.total" />
+        </reference>
+    </sales_email_order_creditmemo_items>
+</layout> 

@@ -1,0 +1,35 @@
+<form id="co-excellence-form" action="">
+<fieldset>
+    <ul class="form-list">
+    <li id="excellence-form">
+        <fieldset>
+            <ul>
+                <li class="wide">
+                    <label for="excellence:like" class="required"><em>*</em><?php echo $this->__('Do you like Excellence Magento Blog?') ?></label>
+                    <div class="input-box">
+                        <select class="required-entry" name="excellence[like]" id="excellence:like">
+                        	<option value=''><?php echo $this->__('Please Choose..');?></option>
+                        	<option value='1' <?php if($this->getQuote()->getExcellenceLike() == 1){echo 'selected="selected"';} ?>><?php echo $this->__('Yes');?></option>
+                        	<option value='2' <?php if($this->getQuote()->getExcellenceLike() == 2){echo 'selected="selected"';} ?>><?php echo $this->__('No');?></option>
+                        </select>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+     </li>
+    </ul>
+    <div class="buttons-set" id="excellence-buttons-container">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="button" onclick="excellence.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span class="please-wait" id="excellence-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var excellence = new ExcellenceMethod('co-excellence-form','<?php echo $this->getUrl('custom/onepage/saveExcellence') ?>');
+    var excellenceForm = new VarienForm('co-excellence-form');
+//]]>
+</script>

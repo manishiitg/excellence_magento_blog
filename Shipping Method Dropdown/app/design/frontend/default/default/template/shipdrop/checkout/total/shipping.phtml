@@ -1,0 +1,9 @@
+    <tr>
+        <th colspan="2" style="<?php echo $this->getTotal()->getStyle() ?>" class="a-right">
+           <?php
+				$block = $this->getLayout()->createBlock('checkout/cart_shipping');
+				$block->setTemplate('shipdrop/checkout/total/shipping/dropdown.phtml');
+				echo $block->_toHtml(); 
+			?>
+        </th>
+    </tr>

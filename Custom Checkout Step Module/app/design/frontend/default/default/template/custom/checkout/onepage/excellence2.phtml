@@ -1,0 +1,31 @@
+<form id="co-excellence2-form" action="">
+<fieldset>
+    <ul class="form-list">
+    <li id="excellence2-form">
+        <fieldset>
+            <ul>
+                <li class="wide">
+                    <label for="excellence2:like" class="required"><em>*</em><?php echo $this->__('Do you like this post?') ?></label>
+                    <div class="input-box">
+                        <input type='text' name='excellence2[like]'  class="required-entry input-text" id="excellence2:like" value='<?php echo $this->getQuote()->getExcellenceLike2()?>'/>
+                    </div>
+                </li>
+            </ul>
+        </fieldset>
+     </li>
+    </ul>
+    <div class="buttons-set" id="excellence2-buttons-container">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="button" onclick="excellence2.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span class="please-wait" id="excellence2-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var excellence2 = new ExcellenceMethod2('co-excellence2-form','<?php echo $this->getUrl('custom/onepage/saveExcellence2') ?>');
+    var excellenceForm2 = new VarienForm('co-excellence2-form');
+//]]>
+</script>

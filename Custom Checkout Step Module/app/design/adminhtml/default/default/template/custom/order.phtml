@@ -1,0 +1,22 @@
+<?php $_order = $this->getOrder() ?>
+<div class="box-left">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('sales')->__('Custom Fields') ?></h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+            <?php 
+            	$custom = $this->getCustomVars();
+            	foreach($custom as $key => $value){ 
+            ?>
+            <tr>
+                <td style="width:10%" class="label"><strong><?php echo Mage::helper('sales')->__($key) ?></strong></td>
+                <td class="value"><?php echo $value;?></td>
+            </tr>
+            <?php } ?>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

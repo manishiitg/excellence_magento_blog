@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_index>
+    	<reference name='head'>
+    		<reference name="head">
+	            <action method="addItem"><type>js</type><name>pickup/jquery-1.6.4.min.js</name></action>
+	            <action method="addItem"><type>js</type><name>pickup/noconflict.js</name></action>
+        	</reference>
+    	</reference>
+    	<reference name='checkout.onepage.shipping_method.available'>
+    		<action method='setTemplate'><template>pickup/checkout/onepage/shipping_method/available.phtml</template></action>
+    	</reference>
+    </checkout_onepage_index>
+    <checkout_onepage_shippingmethod>
+    	<reference name='root'>
+    		<action method='setTemplate'><template>pickup/checkout/onepage/shipping_method/available.phtml</template></action>
+    	</reference>
+    </checkout_onepage_shippingmethod>
+</layout> 

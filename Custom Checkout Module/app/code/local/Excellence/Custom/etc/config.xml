@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Excellence_Custom>
+            <version>0.1.0</version>
+        </Excellence_Custom>
+    </modules>
+    <frontend>
+        <routers>
+            <custom>
+                <use>standard</use>
+                <args>
+                    <module>Excellence_Custom</module>
+                    <frontName>custom</frontName>
+                </args>
+            </custom>
+        </routers>
+        <layout>
+            <updates>
+                <custom>
+                    <file>custom.xml</file>
+                </custom>
+            </updates>
+        </layout>
+    </frontend>
+    <admin>
+        <routers>
+			<custom>
+				<use>admin</use>
+				<args>
+					<module>Excellence_Custom</module>
+					<frontName>custom</frontName>
+				</args>
+			</custom>
+        </routers>
+    </admin>
+    <adminhtml>
+		<layout>
+			<updates>
+				<custom>
+					<file>custom.xml</file>
+				</custom>
+			</updates>
+		</layout>
+    </adminhtml>   
+    <global>
+    	<events>
+	     <sales_quote_save_before> <!-- Name of Event -->
+	         <observers>
+	                   <save_before>
+	                    <type>singleton</type>
+	                    <class>Excellence_Custom_Model_Observer</class> <!-- Over Model Class -->
+	                    <method>saveQuoteBefore</method> <!-- name of function -->
+	                  </save_before>
+	        </observers>
+	      </sales_quote_save_before>
+	      <sales_quote_save_after> <!-- Name of Event -->
+	         <observers>
+	                   <save_after>
+		                    <type>singleton</type>
+		                    <class>Excellence_Custom_Model_Observer</class> <!-- Over Model Class -->
+		                    <method>saveQuoteAfter</method> <!-- name of function -->
+	                  </save_after>
+	        </observers>
+	      </sales_quote_save_after>
+	      <sales_quote_load_after>
+	      		<observers>
+	      	 		<load_after>
+		                    <type>singleton</type>
+		                    <class>Excellence_Custom_Model_Observer</class> <!-- Over Model Class -->
+		                    <method>loadQuoteAfter</method> <!-- name of function -->
+	                 </load_after>
+	             </observers>
+	      </sales_quote_load_after>
+	      <sales_model_service_quote_submit_after>
+	      		<observers>
+	      	 		<sales_model_service_quote_submit_after>
+		                    <type>singleton</type>
+		                    <class>Excellence_Custom_Model_Observer</class> <!-- Over Model Class -->
+		                    <method>saveOrderAfter</method> <!-- name of function -->
+	                 </sales_model_service_quote_submit_after>
+	             </observers>
+	      </sales_model_service_quote_submit_after>
+	      <sales_order_load_after>
+	      		<observers>
+	      	 		<sales_order_load_after>
+		                    <type>singleton</type>
+		                    <class>Excellence_Custom_Model_Observer</class> <!-- Over Model Class -->
+		                    <method>loadOrderAfter</method> <!-- name of function -->
+	                 </sales_order_load_after>
+	             </observers>
+	      </sales_order_load_after>
+	</events> 	
+        <models>
+        	<sales>
+        		<rewrite>
+        			<order>Excellence_Custom_Model_Sales_Order</order>
+        		</rewrite>
+        	</sales>
+            <custom>
+                <class>Excellence_Custom_Model</class>
+                <resourceModel>custom_mysql4</resourceModel>
+            </custom>
+            <custom_mysql4>
+                <class>Excellence_Custom_Model_Mysql4</class>
+                <entities>
+                    <custom_quote>
+                        <table>sales_quote_custom</table>
+                    </custom_quote>
+                    <custom_order>
+                        <table>sales_order_custom</table>
+                    </custom_order>
+                </entities>
+            </custom_mysql4>
+        </models>
+        <resources>
+            <custom_setup>
+                <setup>
+                    <module>Excellence_Custom</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </custom_setup>
+            <custom_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </custom_write>
+            <custom_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </custom_read>
+        </resources>
+        <blocks>
+            <custom>
+                <class>Excellence_Custom_Block</class>
+            </custom>
+        </blocks>
+        <helpers>
+            <custom>
+                <class>Excellence_Custom_Helper</class>
+            </custom>
+        </helpers>
+    </global>
+</config>

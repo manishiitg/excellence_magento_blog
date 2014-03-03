@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <collection_index_index>
+        <reference name="content">
+            <block type="collection/collection" name="product_list" template="collection/collection.phtml">
+            </block>
+        </reference>
+    </collection_index_index>
+</layout> 

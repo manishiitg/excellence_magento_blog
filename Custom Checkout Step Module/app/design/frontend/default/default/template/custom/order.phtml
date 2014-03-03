@@ -1,0 +1,19 @@
+<div class="col-set order-info-box">
+    <div class="col">
+        <div class="box">
+            <div class="box-title">
+                <h2><?php echo $this->__('Custom Fields') ?></h2>
+            </div>
+            <div class="box-content">
+                
+                	<?php
+                		$custom = $this->getCustomVars();
+                		foreach($custom as $key => $value){
+                	?>
+                		<b><?php echo $this->__($key);?></b> : <?php echo $value;?> <br/>
+                	<?php } ?>
+                
+            </div>
+        </div>
+    </div>
+</div>

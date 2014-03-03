@@ -1,0 +1,16 @@
+<?php if($this->getSource() instanceof Mage_Sales_Model_Order){ ?>
+<?php if ((float) $this->getSource()->getFeeAmountRefunded()): ?>
+    <tr>
+        <td class="label"><strong><?php echo Mage::helper('fee')->__('Fee refunded to customer') ?></strong></td>
+        <td><strong><?php echo $this->getSource()->getFeeAmountRefunded(); ?></strong></td>
+    </tr>
+<?php endif; ?>
+<?php } else { ?>
+<?php if ((float) $this->getSource()->getFeeAmount()): ?>
+    <tr>
+        <td class="label"><strong><?php echo Mage::helper('fee')->__('Fee Refunded') ?></strong></td>
+        <td><strong><?php echo $this->getSource()->getFeeAmount(); ?></strong></td>
+    </tr>
+<?php endif; 
+}?>
+

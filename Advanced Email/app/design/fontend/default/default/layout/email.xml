@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <email_index_index>
+        <reference name="content">
+            <block type="email/email" name="email" template="email/email.phtml" />
+        </reference>
+    </email_index_index>
+    <email_test_layout>
+    	<block type='core/template' name='parent' template='email/testblock.phtml'>
+    		<block type='core/template' template='email/testblock2.phtml' name='child' />
+    	</block>
+    </email_test_layout>
+</layout> 

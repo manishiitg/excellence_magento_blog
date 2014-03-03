@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <sales_order_view>
+        <reference name="my.account.wrapper">
+            <block type="custom/custom_order" name="custom.order" template="custom/order.phtml" after='sales.order.info' />
+        </reference>
+    </sales_order_view>
+</layout> 

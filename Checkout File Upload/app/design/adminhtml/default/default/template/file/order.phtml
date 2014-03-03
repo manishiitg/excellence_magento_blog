@@ -1,0 +1,22 @@
+<?php $_order = $this->getOrder() ?>
+<div class="box-left">
+    <div class="entry-edit">
+        <div class="entry-edit-head">
+            <h4 class="icon-head head-account"><?php echo Mage::helper('sales')->__('Files Uploaded') ?></h4>
+        </div>
+        <div class="fieldset">
+            <table cellspacing="0" class="form-list">
+            <?php 
+            	$files = Mage::getModel('file/order')->getFiles($_order);
+            	foreach($files as $file){ 
+            ?>
+            <tr>
+                <td style="width:20%" class="label"><strong><?php echo Mage::helper('file')->__($file['type']) ?></strong></td>
+                <td align="right" class="value"><a target="_blank" href='<?php $url =  $this->getBaseUrl().'media/uploads'.$file['filename']; echo str_replace('index.php/', '', $url); ?>'><?php echo $file['filename'];?></a></td>
+            </tr>
+            <?php } ?>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="clear"></div>

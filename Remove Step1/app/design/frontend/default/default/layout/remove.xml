@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_index> <!-- Adding our new step to onepage block  -->
+    	<reference name='checkout.onepage'>
+    		 <action method='setTemplate'><template>remove/checkout/onepage.phtml</template></action>
+    	</reference>
+    </checkout_onepage_index>
+</layout> 

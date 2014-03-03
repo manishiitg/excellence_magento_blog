@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <manager_adminhtml_manager_index>
+        <reference name="content">
+            <block type="manager/adminhtml_manager" name="manager" />
+        </reference>
+    </manager_adminhtml_manager_index>
+    <manager_adminhtml_manager_customer>
+       <block type="core/text_list" name="root" output="toHtml">
+           <block type="manager/adminhtml_manager_edit_tab_grid" name="customer.grid"/>
+           <block type="adminhtml/widget_grid_serializer" name="grid_serializer">
+               <reference name="grid_serializer">
+                   <action method="initSerializerBlock">
+                       <grid_block_name>customer.grid</grid_block_name>
+                       <data_callback>getSelectedCustomers</data_callback>
+                       <hidden_input_name>links[customers]</hidden_input_name>
+                       <reload_param_name>customers</reload_param_name>
+                   </action>
+                   <action method="addColumnInputName">
+                       <input_name>position</input_name>
+                   </action>
+               </reference>
+           </block>
+       </block>
+   </manager_adminhtml_manager_customer>
+   <manager_adminhtml_manager_customergrid>
+	        <block type="core/text_list" name="root" output="toHtml">
+	            <block type="manager/adminhtml_manager_edit_tab_grid" name="customer.grid"/>
+	        </block>
+	</manager_adminhtml_manager_customergrid>
+</layout>

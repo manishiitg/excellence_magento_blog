@@ -1,0 +1,57 @@
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+    <li><a href="#" onclick="wishlistForm.submitAjaxWishlist(this, '<?php echo $_wishlistSubmitUrl ?>','<?php echo $_product->getId()?>'); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+<?php endif; ?>
+<?php
+    $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
+?>
+<?php if($_compareUrl) : ?>
+    <li><span class="separator">|</span> <a href="#" onclick="ajaxCompare('<?php echo $_compareUrl?>','<?php echo $_product->getId()?>'); return false;" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+<?php endif; ?>
+<li><span id='ajax_loading<?php echo $_product->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span></li>
+</ul>
+<script type="text/javascript">
+var wishlistForm = new VarienForm('product_addtocart_form');
+wishlistForm.submitAjaxWishlist = function(button, url,id){
+    if(this.validator) {
+        var nv = Validation.methods;
+        delete Validation.methods['required-entry'];
+        delete Validation.methods['validate-one-required'];
+        delete Validation.methods['validate-one-required-by-name'];
+        if (this.validator.validate()) {
+        	url = url.replace("wishlist/index","ajaxwishlist/index");
+        	var data = jQuery('#product_addtocart_form').serialize();
+			data += '&isAjax=1';
+			jQuery('#ajax_loading'+id).show();
+			jQuery.ajax( {
+				url : url,
+				dataType : 'json',
+				type : 'post',
+				data : data,
+				success : function(data) {
+					jQuery('#ajax_loading'+id).hide();
+					if(data.status == 'ERROR'){
+						alert(data.message);
+					}else{
+						alert(data.message);
+						if(jQuery('.block-wishlist').length){
+                            jQuery('.block-wishlist').replaceWith(data.sidebar);
+                        }else{
+                            if(jQuery('.col-right').length){
+                            	jQuery('.col-right').prepend(data.sidebar);
+                            }
+                        }
+                        if(jQuery('.header .links').length){
+                            jQuery('.header .links').replaceWith(data.toplink);
+                        }
+					}
+				}
+			});
+        }
+        Object.extend(Validation.methods, nv);
+    }
+}.bind(wishlistForm);
+</script>

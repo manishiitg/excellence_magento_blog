@@ -1,0 +1,34 @@
+<?php
+	echo 'This is Like Page'; 
+	
+	$facebook = Mage::getModel('fb/api_facebook');
+	
+	try{
+	$signed_request = $facebook->getSignedRequest();
+	$page_id = $signed_request["page"]["id"];
+	$page_admin = $signed_request["page"]["admin"];
+	$like_status = $signed_request["page"]["liked"];
+	$country = $signed_request["user"]["country"];
+	$locale = $signed_request["user"]["locale"];
+	
+	echo "<br>page id = $page_id";
+	echo "<br>page admin = $page_admin";
+	echo "<br>like status = $like_status";
+	echo "<br>country = $country";
+	echo "<br>locale = $locale";
+	
+	}catch(Exception $e){
+		echo '<br>'.$e->getMessage();
+	}
+?>
+<div id="fb-root"></div>
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript"> 
+      FB.init({
+        appId  : '324887950882315',
+        oauth  : true,
+      });
+ 
+      FB.Canvas.setAutoGrow();
+ 
+</script> 

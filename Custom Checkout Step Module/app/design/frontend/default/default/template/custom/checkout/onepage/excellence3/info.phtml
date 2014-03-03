@@ -1,0 +1,11 @@
+<fieldset>
+        <?php
+        $shippingMethod = $this->getQuote()->getShippingAddress()->getShippingMethod();
+        if($shippingMethod == 'flatrate_flatrate'){
+        echo 'We are shipping your products though Express Delivery, the product will reach you in 3days';
+        }else{
+        echo 'We are shipping your products though Normal Delivery, the product will reach you in 1weeks time';
+        }
+        ?>
+            
+</fieldset>

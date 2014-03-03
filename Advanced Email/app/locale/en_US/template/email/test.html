@@ -1,0 +1,46 @@
+<!--@subject Contact Form@-->
+<!--@vars
+{"var data.name":"Sender Name",
+"var data.email":"Sender Email",
+"var data.telephone":"Sender Telephone",
+"var data.comment":"Comment"}
+@-->
+Name: {{var variable1}}
+<br>
+{{var object.object_text}}
+<br/>
+{{var object.getName(true,'test')}}
+<br/>
+{{depend object.can_show}}
+	Is can show
+{{/depend}}
+{{depend object.shouldShow()}}
+	Is Showing
+{{/depend}}
+<br>
+{{if object.shouldShow2()}}
+	Is Inside If
+{{else}}
+	Is Inside Else
+{{/if}}
+<br>
+{{block type='email/mail' object=$object}}
+<br>
+{{block id='footer_links'}}
+<br>
+{{layout handle="email_test_layout" object=$object}}
+<br>
+{{skin url='images/logo_email.gif'}}
+<br>
+{{media url='Untitled.png'}}
+<br>
+<br>
+{{store url='email' _query='k=1' test=213}}
+<br>
+{{htmlescape var=$html}}
+<br>
+{{protocol}}
+<br>
+{{config path='trans_email/ident_support/email'}}
+<br>
+{{customvar code="test123"}}

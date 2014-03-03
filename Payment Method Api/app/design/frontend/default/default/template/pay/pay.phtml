@@ -1,0 +1,55 @@
+<?php 
+	$session = Mage::getSingleton('checkout/session');
+	$orderIncrementId = $session->getLastRealOrderId();
+	$order = Mage::getModel('sales/order')->loadByIncrementId($orderIncrementId);
+	$billingaddress = $order->getBillingAddress();
+	$shippingaddress = $order->getShippingAddress();
+	$currencyDesc = Mage::app()->getStore()->getCurrentCurrencyCode();
+	$totals = number_format($order->getGrandTotal(), 2, '.', ''); 
+	$address = $billingaddress->getStreet();
+	$address1 = $shippingaddress->getStreet();
+	$data = array(
+   	'Merchant_Id' => trim(Mage::getStoreConfig('payment/pay/api_username')),
+	'Amount' => $totals,
+	'billing_cust_name' =>$order->getCustomerFirstname(), 
+	'billing_last_name'=>$order->getCustomerLastname(),
+	'billing_cust_tel_No' => $billingaddress->getTelephone(),
+	'billing_cust_email'=>$order->getCustomerEmail(),
+	'billing_cust_address'=>$address[0] . ' '.$address[1],
+	'billing_cust_city'=>$billingaddress->getCity(),
+	'billing_cust_country'=>$billingaddress->getCountryId(),
+	'billing_cust_state'=>$billingaddress->getRegion(),
+	'billing_cust_zip' =>$billingaddress->getPostcode(),
+	'delivery_cust_name' =>$shippingaddress->getCustomerFirstname(),
+	'delivery_last_name'=>$shippingaddress->getCustomerLastname(),
+	'delivery_cust_tel_No' => $shippingaddress->getTelephone(),
+	'delivery_cust_email'=>$shippingaddress->getCustomerEmail(),
+	'delivery_cust_address'=>$address1[0] . ' '.$address1[1],
+	'delivery_cust_city'=>$shippingaddress->getCity(),
+	'delivery_cust_country'=>$shippingaddress->getCountryId(),
+	'delivery_cust_state'=>$shippingaddress->getRegion(),
+	'delivery_cust_zip' =>$shippingaddress->getPostcode(),
+	'Order_Id' => $order->getIncrementId(),
+	'TxnType' => 'A',
+	'actionID' => 'TXN',
+	'Currency' => 'USD',
+	);
+	
+?>
+<form action="https://world.ccavenue.com/servlet/ccw.CCAvenueController" method="post" id="redirectpay">
+	<?php foreach($data as $key => $value):	?>
+		<input type='hidden' name='<?php echo $key?>' value='<?php echo $value;?>' />
+	<?php endforeach;?>
+	<input type="submit" value='Buy Now'/> 
+</form>
+
+	<?php echo $this->__('If Page Doesn\'t Redirect In 5 Sectonds, Please press Buy button');?>
+	<script type="text/javascript">
+	function myfunc () {
+	var frm = document.getElementById("redirectpay");
+	frm.submit();
+	}
+	window.onload = myfunc;
+	</script>
+ 
+			

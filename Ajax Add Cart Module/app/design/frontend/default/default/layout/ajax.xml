@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <catalog_product_view>
+    	<reference name="head">
+            <action method="addItem"><type>js</type><name>jquery/jquery-1.6.4.min.js</name></action>
+            <action method="addItem"><type>js</type><name>jquery/noconflict.js</name></action>
+        </reference>
+        <reference name='product.info'>
+        	<action method='setTemplate'><template>ajax/catalog/product/view.phtml</template></action>
+        </reference>
+        <reference name='product.info.addtocart'>
+	        	<action method='setTemplate'><template>ajax/catalog/product/view/addtocart.phtml</template></action>
+	    </reference>
+    </catalog_product_view>
+</layout> 

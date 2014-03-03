@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+    </default>
+    <customer_account_create>
+        <reference name="customer_form_register">
+            <action method="setTemplate"><template>profile/persistent/customer/form/register.phtml</template></action>
+        </reference>
+    </customer_account_create>
+    <customer_account_edit>
+    	<reference name='customer_edit'>
+    		<action method="setTemplate"><template>profile/customer/form/edit.phtml</template></action>
+    	</reference>
+    </customer_account_edit>
+    <checkout_onepage_index>
+    	<reference name="checkout.onepage.billing">
+            <action method="setTemplate"><template>profile/persistent/checkout/onepage/billing.phtml</template></action>
+            </reference>
+    </checkout_onepage_index>
+</layout> 

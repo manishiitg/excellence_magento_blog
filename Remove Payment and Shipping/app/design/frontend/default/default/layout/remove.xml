@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <checkout_onepage_index> <!-- Adding our new step to onepage block  -->
+    	<reference name='checkout.onepage'>
+    		 <action method='setTemplate'><template>remove/checkout/onepage.phtml</template></action>
+    	</reference>
+    	<reference name='checkout.progress'> <!-- Change the template of progress block -->
+    	      <action method='setTemplate'><template>remove/checkout/onepage/progress.phtml</template></action>
+    	</reference>
+    </checkout_onepage_index>
+    <checkout_onepage_progress>  <!-- Change the template of progress block -->
+    	<reference name='root'>
+    		<action method='setTemplate'><template>remove/checkout/onepage/progress.phtml</template></action>
+    	</reference>
+    </checkout_onepage_progress>
+    <checkout_onepage_review>
+    	<reference name='root'>
+    		<action method='setTemplate'><template>remove/checkout/onepage/review/info.phtml</template></action>
+    	</reference>
+    </checkout_onepage_review>
+</layout> 

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <adminhtml_sales_order_view>
+        <reference name="order_info">
+        	<action method='setTemplate'><template>file/sales/order/info.phtml</template></action>
+        	<block type="adminhtml/sales_order_view_info" name="order_info2" template="sales/order/view/info.phtml"></block>
+            <block type="adminhtml/sales_order_view" name="custom.order" template='file/order.phtml'/>
+        </reference>
+    </adminhtml_sales_order_view>
+</layout>

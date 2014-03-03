@@ -1,0 +1,73 @@
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+<?php $collection = $this->getCollection(); ?>
+<div class="page-title">
+    <h1><?php echo $this->__($this->getTitle()) ?></h1>
+</div>
+<?php echo $this->getToolbarHtml(); ?>
+<?php if($collection->getSize()): ?>
+
+	<?php if($this->getMode()!='grid'): ?>
+	<!-- List Model -->
+	<?php $_iterator = 0; ?>
+    <ol class="products-list" id="products-list">
+    <?php foreach ($collection as $category): 
+    	$category = Mage::getModel('catalog/category')->load($category->getId()); ?>
+        <li class="item<?php if( ++$_iterator == sizeof($collection) ): ?> last<?php endif; ?>">
+            <?php // Product Image ?>
+            <a href="<?php echo $category->getUrl() ?>" title="<?php echo $this->stripTags($category->getName()); ?>" class="product-image"><img src="<?php echo $category->getImageUrl() ?>" width="135" height="135" alt="<?php echo $this->stripTags($category->getName()); ?>" /></a>
+            <?php // Product description ?>
+            <div class="product-shop">
+                <div class="f-fix">
+                    <?php $_productNameStripped = $this->stripTags($category->getName(), null, true); ?>
+                    <h2 class="product-name"><a href="<?php echo $category->getUrl() ?>" title="<?php echo $_productNameStripped; ?>"><?php echo $category->getName(); ?></a></h2>
+                    <div class="desc std">
+                        <?php echo $category->getDescription(); ?>
+                    </div>
+                    <?php if($category->getChildrenCount()){ ?>
+                    <div>
+                    	<a href='<?php echo $this->getUrl('*/*/*',array('category_id'=>$category->getId()))?>'>View Sub Category</a>
+                    </div>
+                    <?php } ?>
+                </div>
+            </div>
+        </li>
+    <?php endforeach; ?>
+    </ol>
+    <script type="text/javascript">decorateList('products-list', 'none-recursive')</script>
+	<?php else: ?>
+
+    <?php // Grid Mode ?>
+
+    <?php $_collectionSize = $collection->count() ?>
+    <?php 
+    	$_columnCount = $this->getColumnCount();
+    	if(!$_columnCount){
+    		$_columnCount = 3;
+    	} 
+    ?>
+    <?php $i=0; foreach ($collection as $category):
+    $category = Mage::getModel('catalog/category')->load($category->getId()); 
+    ?>
+        <?php if ($i++%$_columnCount==0): ?>
+        <ul class="products-grid">
+        <?php endif ?>
+            <li class="item<?php if(($i-1)%$_columnCount==0): ?> first<?php elseif($i%$_columnCount==0): ?> last<?php endif; ?>">
+                <a href="<?php echo $category->getUrl() ?>" title="<?php echo $this->stripTags($category->getName()); ?>" class="product-image"><img src="<?php echo $category->getImageUrl() ?>" width="135" height="135" alt="<?php echo $this->stripTags($category->getName()) ?>" /></a>
+                <h2 class="product-name"><a href="<?php echo $category->getUrl() ?>" title="<?php echo $category->getUrl() ?>"><?php echo $category->getName() ?></a></h2>
+                <?php if($category->getChildrenCount()){ ?>
+                <div>
+                    <a href='<?php echo $this->getUrl('*/*/*',array('category_id'=>$category->getId()))?>'>View Sub Category</a>
+                </div>
+                <?php } ?>
+            </li>
+        <?php if ($i%$_columnCount==0 || $i==$_collectionSize): ?>
+        </ul>
+        <?php endif ?>
+        <?php endforeach ?>
+        <script type="text/javascript">decorateGeneric($$('ul.products-grid'), ['odd','even','first','last'])</script>
+    <?php endif; ?>
+
+<?php echo $this->getToolbarHtml(); ?>
+<?php else: ?>
+    <p><?php echo $this->__('The collection is empty.'); ?></p>
+<?php endif ?>

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<config>
+	<modules>
+		<Excellence_Test>
+			<version>0.1.0</version>
+		</Excellence_Test>
+	</modules>
+	<frontend>
+		<routers>
+			<test>
+				<use>standard</use>
+				<args>
+					<module>Excellence_Test</module>
+					<frontName>test</frontName>
+				</args>
+			</test>
+		</routers>
+	</frontend>
+	<global>
+		<blocks>
+			<test>
+				<class>Excellence_Test_Block</class>
+			</test>
+		</blocks>
+		<helpers>
+			<test>
+				<class>Excellence_Test_Helper</class>
+			</test>
+		</helpers>
+	</global>
+</config>

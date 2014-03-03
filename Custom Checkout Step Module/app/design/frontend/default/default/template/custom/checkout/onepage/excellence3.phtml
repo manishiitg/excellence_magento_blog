@@ -1,0 +1,21 @@
+<form id="co-excellence3-form" action="">
+<fieldset>
+    <ul class="form-list">
+    <li id="checkout-excellence3-load">  <!-- This id format is very important -->
+    	<?php echo $this->getChildHtml('info');?>
+     </li>
+    </ul>
+    <div class="buttons-set" id="excellence3-buttons-container">
+        <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+        <button type="button" title="<?php echo $this->__('Continue') ?>" class="button" onclick="excellence3.save()"><span><span><?php echo $this->__('Continue') ?></span></span></button>
+        <span class="please-wait" id="excellence3-please-wait" style="display:none;">
+            <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading next step...') ?>" title="<?php echo $this->__('Loading next step...') ?>" class="v-middle" /> <?php echo $this->__('Loading next step...') ?>
+        </span>
+    </div>
+</fieldset>
+</form>
+<script type="text/javascript">
+//<![CDATA[
+    var excellence3 = new ExcellenceMethod3('<?php echo $this->getUrl('custom/onepage/saveExcellence3') ?>');
+//]]>
+</script>

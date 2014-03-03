@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <sales_order_view> <!-- Code From Previous Module -->
+        <reference name="my.account.wrapper">
+            <block type="custom/custom_order" name="custom.order" template="custom/order.phtml" after='sales.order.info' />
+        </reference>
+    </sales_order_view>
+    <checkout_onepage_index> <!-- Adding our new step to onepage block  -->
+    	<reference name='checkout.onepage'>
+    		 <action method='setTemplate'><template>custom/checkout/onepage.phtml</template></action>
+    		 <block type="custom/checkout_onepage_excellence" name="checkout.onepage.excellence" as="excellence" template="custom/checkout/onepage/excellence.phtml"/>
+    		 <block type="custom/checkout_onepage_excellence2" name="checkout.onepage.excellence2" as="excellence2" template="custom/checkout/onepage/excellence2.phtml"/>
+    		 <block type="custom/checkout_onepage_excellence3" name="checkout.onepage.excellence3" as="excellence3" template="custom/checkout/onepage/excellence3.phtml">
+    		 		<block type="custom/checkout_onepage_excellence3" name="checkout.onepage.excellence3.info" as="excellence3.info" template="custom/checkout/onepage/excellence3/info.phtml" />
+    		 </block>
+    	</reference>
+    	<reference name='checkout.progress'> <!-- Change the template of progress block -->
+    	      <action method='setTemplate'><template>custom/checkout/onepage/progress.phtml</template></action>
+    	</reference>
+    </checkout_onepage_index>
+    <checkout_onepage_progress>  <!-- Change the template of progress block -->
+    	<reference name='root'>
+    		<action method='setTemplate'><template>custom/checkout/onepage/progress.phtml</template></action>
+    	</reference>
+    </checkout_onepage_progress>
+    
+    <checkout_onepage_excellence3>
+        <!-- Mage_Checkout -->
+        <remove name="right"/>
+        <remove name="left"/>
+
+        <block type="custom/checkout_onepage_excellence3" name="root" output="toHtml" template="custom/checkout/onepage/excellence3/info.phtml"/>
+    </checkout_onepage_excellence3>
+    
+</layout> 
