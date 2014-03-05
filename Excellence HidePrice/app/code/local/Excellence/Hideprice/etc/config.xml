@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Excellence_Hideprice>
+            <version>0.1.0</version>
+        </Excellence_Hideprice>
+    </modules>
+    <frontend>
+        <routers>
+            <hideprice>
+                <use>standard</use>
+                <args>
+                    <module>Excellence_Hideprice</module>
+                    <frontName>hideprice</frontName>
+                </args>
+            </hideprice>
+        </routers>
+        <layout>
+            <updates>
+                <hideprice>
+                    <file>hideprice.xml</file>
+                </hideprice>
+            </updates>
+        </layout>
+    </frontend>
+</config>

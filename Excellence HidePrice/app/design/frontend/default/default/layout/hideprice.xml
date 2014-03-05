@@ -1,0 +1,140 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="catalog_product_price_template">
+            <action method="addPriceBlockType">
+                <type>simple</type>
+                <block>catalog/product_price</block>
+                <template>hideprice/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>grouped</type>
+                <block>catalog/product_price</block>
+                <template>hideprice/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>configurable</type>
+                <block>catalog/product_price</block>
+                <template>hideprice/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>virtual</type>
+                <block>catalog/product_price</block>
+                <template>hideprice/price.phtml</template>
+            </action>
+            <action method="addPriceBlockType">
+                <type>bundled</type>
+                <block>catalog/product_price</block>
+                <template>hideprice/price.phtml</template>
+            </action>
+        </reference>
+    </default>
+    <hideprice_index_index>
+        <reference name="content">
+            <block type="hideprice/hideprice" name="hideprice" template="hideprice/hideprice.phtml" />
+        </reference>
+    </hideprice_index_index>
+    <catalog_category_default>
+        <reference name="product_list">
+            <action method="setTemplate">
+                <template>hideprice/list.phtml</template>
+            </action>
+
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+    </catalog_category_default>
+    <catalog_category_layered>
+        <reference name="product_list">
+            <action method="setTemplate">
+                <template>hideprice/list.phtml</template>
+            </action>
+
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+    </catalog_category_layered>
+    <catalog_product_view>
+        <reference name="product.info.addtocart">
+            <action method="setTemplate">
+                <template>hideprice/addtocart.phtml</template>
+            </action>
+        </reference>
+        <reference name="product.info">
+            <action method="setTierPriceTemplate">
+                <template>hideprice/tierprices.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="catalog.product.related">
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+    </catalog_product_view>
+    <catalog_product_compare_index>
+        <reference name="catalog.compare.list">
+            <action method="setTemplate">
+                <template>hideprice/compare/list.phtml</template>
+            </action>
+
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+    </catalog_product_compare_index>
+
+    <catalogsearch_result_index>
+        <reference name="search_result_list">
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+    </catalogsearch_result_index>
+
+    <catalogsearch_advanced_result>
+        <reference name="search_result_list">
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+    </catalogsearch_advanced_result>
+
+    <PRODUCT_TYPE_bundle>
+        <reference name="product.info.bundle">
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/price.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="bundle.prices">
+            <action method="setTemplate">
+                <template>hideprice/bundle/clone_price.phtml</template>
+            </action>
+        </reference>
+
+        <reference name="product.clone_prices">
+            <action method="addPriceBlockType">
+                <type>bundle</type>
+                <block>bundle/catalog_product_price</block>
+                <template>hideprice/bundle/clone_price.phtml</template>
+            </action>
+        </reference>
+    </PRODUCT_TYPE_bundle>
+</layout>
