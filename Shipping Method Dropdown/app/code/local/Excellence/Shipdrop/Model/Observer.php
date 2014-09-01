@@ -8,7 +8,7 @@ class Excellence_Shipdrop_Model_Observer {
 		
 		
 		if(!Mage::getSingleton('checkout/type_onepage')->getQuote()->getShippingAddress()->getCountryId()  && Mage::getSingleton('checkout/type_onepage')->getQuote()->getItemsCount()){
-			$country_id = 'IN';
+			$country_id = Mage::getStoreConfig('general/country/default');
 			$region_id = false;
 
 			$country = Mage::getModel('directory/country')->loadByCode($country_id);
