@@ -22,7 +22,7 @@ class Excellence_Shipdrop_Model_Observer {
 			$customerSession=Mage::getSingleton("customer/session");
 			if($customerSession->isLoggedIn()){
 				$customerAddress=$customerSession->getCustomer()->getDefaultShippingAddress();
-				if($customerAddress->getId()){
+				if($customerAddress && $customerAddress->getId()){
 					$customerCountry=$customerAddress->getCountryId();
 					$region_id = $customerAddress->getRegionId();
 					$region = $customerAddress->getRegion();
