@@ -1,0 +1,84 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+
+<?php $_product = $this->getProduct(); ?>
+<?php $_wishlistSubmitUrl = $this->helper('wishlist')->getAddUrl($_product); ?>
+
+<ul class="add-to-links">
+<?php if ($this->helper('wishlist')->isAllow()) : ?>
+        <li><a href="<?php echo $_wishlistSubmitUrl ?>" onclick="productAddToCartForm.submitLight(this, this.href); return false;" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+<?php endif; ?>
+<?php
+    $_compareUrl = $this->helper('catalog/product_compare')->getAddUrl($_product);
+?>
+<?php if($_compareUrl) : ?>
+            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+<?php endif; ?>
+</ul>
+
+<script type="text/javascript">
+var wishlistForm = new VarienForm('product_addtocart_form');
+wishlistForm.submitAjaxWishlist = function(button, url,id){
+    if(this.validator) {
+        var nv = Validation.methods;
+        delete Validation.methods['required-entry'];
+        delete Validation.methods['validate-one-required'];
+        delete Validation.methods['validate-one-required-by-name'];
+        if (this.validator.validate()) {
+            url = url.replace("wishlist/index","ajaxwishlist/index");
+            var data = jQuery('#product_addtocart_form').serialize();
+            data += '&isAjax=1';
+            jQuery('#ajax_loading'+id).show();
+            jQuery.ajax( {
+                url : url,
+                dataType : 'json',
+                type : 'post',
+                data : data,
+                success : function(data) {
+                    jQuery('#ajax_loading'+id).hide();
+                    if(data.status == 'ERROR'){
+                        alert(data.message);
+                    }else{
+                        alert(data.message);
+                        if(jQuery('.block-wishlist').length){
+                            jQuery('.block-wishlist').replaceWith(data.sidebar);
+                        }else{
+                            if(jQuery('.col-right').length){
+                                jQuery('.col-right').prepend(data.sidebar);
+                            }
+                        }
+                        if(jQuery('.header .links').length){
+                            jQuery('.header .links').replaceWith(data.toplink);
+                        }
+                    }
+                }
+            });
+        }
+        Object.extend(Validation.methods, nv);
+    }
+}.bind(wishlistForm);
+</script>

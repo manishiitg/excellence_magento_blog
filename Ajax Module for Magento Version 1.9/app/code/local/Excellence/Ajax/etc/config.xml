@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+* @category   Excellence
+* @package    Excellence_Ajax
+* @author     ModuleCreator
+* @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <Excellence_Ajax>
+            <version>0.1.0</version>
+        </Excellence_Ajax>
+    </modules>
+    <frontend>
+        <routers>
+            <ajax>
+                <use>standard</use>
+                <args>
+                    <module>Excellence_Ajax</module>
+                    <frontName>ajax</frontName>
+                </args>
+            </ajax>
+        </routers>
+        <layout>
+            <updates>
+                <ajax>
+                    <file>ajax.xml</file>
+                </ajax>
+            </updates>
+        </layout>
+    </frontend>   
+    <global>
+        <resources>
+            <ajax_setup>
+                <setup>
+                    <module>Excellence_Ajax</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </ajax_setup>
+            <ajax_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </ajax_write>
+            <ajax_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </ajax_read>
+        </resources>
+    </global>
+    <global>
+        <rewrite>
+            <ajax_cart> <!--This can be any unique id -->
+                <from><![CDATA[#^/checkout/cart/#]]></from>  <!-- the URL which u want to override-->
+                <to>/ajax/index/</to>  <!-- destination url -->
+            </ajax_cart>
+        </rewrite>
+    </global>
+</config>

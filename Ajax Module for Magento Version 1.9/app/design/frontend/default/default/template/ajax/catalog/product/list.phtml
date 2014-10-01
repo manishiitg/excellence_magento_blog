@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2014 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -57,11 +57,11 @@
                     <?php echo $this->getReviewsSummaryHtml($_product) ?>
                     <?php endif; ?>
                     <?php echo $this->getPriceHtml($_product, true) ?>
-		<?php if($_product->isSaleable()): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php if($_product->isSaleable()): ?>
+                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
                     <?php else: ?>
                         <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-<?php endif; ?>
+                    <?php endif; ?>
                     <div class="desc std">
                         <?php echo $_helper->productAttribute($_product, $_product->getShortDescription(), 'short_description') ?>
                         <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_productNameStripped ?>" class="link-learn"><?php echo $this->__('Learn More') ?></a>
@@ -99,18 +99,25 @@
                 <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
                 <div class="actions">
-<?php if($_product->isSaleable()): ?>
-                        <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                    <?php if($_product->isSaleable()): ?>
+                        <?php if ( !($_product->getTypeInstance(true)->hasRequiredOptions($_product) || $_product->isGrouped()) ) { ?>
+                        <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocationAjax('<?php echo $this->getAddToCartUrl($_product) ?>','<?php echo $_product->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
+                        <span id='ajax_loader<?php echo $_product->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
+                        <?php } else { ?>
+                            <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="showOptions('<?php echo $_product->getId()?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
+                            <a href='<?php echo $this->getUrl('ajax/index/options',array('product_id'=>$_product->getId()));?>' class='fancybox' id='fancybox<?php echo $_product->getId()?>' style='display:none'>Test</a>
+                        <?php }  ?>
                     <?php else: ?>
                         <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
-<?php endif; ?>
-                   <ul class="add-to-links">
+                    <?php endif; ?>
+                    <ul class="add-to-links">
                         <?php if ($this->helper('wishlist')->isAllow()) : ?>
-                            <li><a href="<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>" class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
+                            <li><a href="#" onclick='ajaxWishlist("<?php echo $this->helper('wishlist')->getAddUrl($_product) ?>","<?php echo $_product->getId()?>");return false;' class="link-wishlist"><?php echo $this->__('Add to Wishlist') ?></a></li>
                         <?php endif; ?>
                         <?php if($_compareUrl=$this->getAddToCompareUrl($_product)): ?>
-                            <li><span class="separator">|</span> <a href="<?php echo $_compareUrl ?>" class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
+                            <li><span class="separator">|</span> <a href="#" onclick='ajaxCompare("<?php echo $_compareUrl ?>","<?php echo $_product->getId()?>");return false;' class="link-compare"><?php echo $this->__('Add to Compare') ?></a></li>
                         <?php endif; ?>
+                    <span id='ajax_loading<?php echo $_product->getId()?>' style='display:none'><img src='<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif')?>'/></span>
                     </ul>
                 </div>
             </li>
@@ -126,3 +133,58 @@
     </div>
 </div>
 <?php endif; ?>
+<script type="text/javascript">
+    jQuery(document).ready(function(){
+        jQuery('.fancybox').fancybox(
+            {
+               hideOnContentClick : true,
+               width: 382,
+               autoDimensions: true,
+               type : 'iframe',
+               showTitle: false,
+               scrolling: 'no',
+               onComplete: function(){ //Resize the iframe to correct size
+                jQuery('#fancybox-frame').load(function() { // wait for frame to load and then gets it's height
+                    jQuery('#fancybox-content').height(jQuery(this).contents().find('body').height()+30);
+                    jQuery.fancybox.resize();
+                 });
+ 
+               }
+            }
+        );
+    });
+    
+    function showOptions(id){
+        jQuery('#fancybox'+id).trigger('click');
+    }
+    
+    function setAjaxData(data,iframe){
+        if(data.status == 'ERROR'){
+            alert(data.message);
+        }else{
+            if(jQuery('.block-cart')){
+                jQuery('.block-cart').replaceWith(data.sidebar);
+            }
+            if(jQuery('.header .links')){
+                jQuery('.header .links').replaceWith(data.toplink);
+            }
+            jQuery.fancybox.close();
+        }
+    }
+    function setLocationAjax(url,id){
+        url += 'isAjax/1';
+        url = url.replace("checkout/cart","ajax/index");
+        jQuery('#ajax_loader'+id).show();
+        try {
+            jQuery.ajax( {
+                url : url,
+                dataType : 'json',
+                success : function(data) {
+                    jQuery('#ajax_loader'+id).hide();
+                    setAjaxData(data,false);          
+                }
+            });
+        } catch (e) {
+        }
+    }
+</script>
