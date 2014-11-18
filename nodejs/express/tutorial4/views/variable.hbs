@@ -1,0 +1,8 @@
+{{!Basic Variable Access}}
+<h3>Welcome {{user.firstname}}</h4>
+
+{{!Changing Scope of Variable Access}}
+{{!Instead of user.lastname and user.email we are directly accessing lastname,email}}
+{{#with user}}
+{{lastname}} {{email}}
+{{/with}}
