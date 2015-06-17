@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Excellence_Test>
+            <version>1.0.0</version>
+        </Excellence_Test>
+    </modules>
+    <global>
+        <catalog>
+            <product>
+                <type>
+                    <excellence translate="label" module="excellence_test">
+                        <label>Excellence Product</label>
+                        <model>excellence_test/product_type</model>
+                        <is_qty>1</is_qty>
+                        <composite>0</composite>
+                        <can_use_qty_decimals>1</can_use_qty_decimals>
+                        <price_model>excellence_test/product_price</price_model>
+                        <!--<index_data_retreiver>downloadable/catalogIndex_data_downloadable</index_data_retreiver>-->
+                        <price_indexer>excellence_test/indexer_price</price_indexer>
+                    </excellence>
+                </type>
+            </product>
+        </catalog>
+        
+        <resources>
+            <excellence_test_setup>
+                <setup>
+                    <module>Excellence_Test</module>
+                    <class>Mage_Catalog_Model_Resource_Eav_Mysql4_Setup</class>
+                </setup>
+            </excellence_test_setup>
+        </resources>
+        <blocks>
+            <excellence_test>
+                <class>Excellence_Test_Block</class>
+            </excellence_test>
+        </blocks>
+        <helpers>
+            <excellence_test>
+                <class>Excellence_Test_Helper</class>
+            </excellence_test>
+        </helpers>
+        <models>
+            <excellence_test>
+                <class>Excellence_Test_Model</class>
+                <resourceModel>excellence_test_resource</resourceModel>
+            </excellence_test>
+            <excellence_test_resource>
+                <class>Excellence_Test_Model_Resource</class>
+            </excellence_test_resource>
+        </models>
+    </global>
+</config>
