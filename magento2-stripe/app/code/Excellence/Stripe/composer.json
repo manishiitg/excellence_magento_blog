@@ -1,0 +1,20 @@
+{
+    "name": "excellence/stripe",
+    "description": "Stripe integration for Magento 2",
+    "type": "magento2-module",
+    "version": "dev-master",
+    "license": [
+        "OSL-3.0"
+    ],
+    "require": {
+        "stripe/stripe-php": "2.*"
+    },
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Excellence/Stripe"
+            ]
+        ]
+    }
+}
