@@ -13,3 +13,4 @@ http://excellencemagentoblog.com
 ### New module added Excellence_CustomShippingRate https://github.com/manishiitg/custom-shipping
 ### New module added Excellence_CustomOrderDiscount https://github.com/manishiitg/custom-discount
 ### New module added Excellence_Giftcard https://github.com/manishiitg/gift_card
+### New module added Excellence_Gst https://github.com/manishiitg/Gst
