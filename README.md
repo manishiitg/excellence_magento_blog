@@ -18,3 +18,4 @@ http://excellencemagentoblog.com
 #### New module added Excellence_Storelocator https://github.com/manishiitg/Excellence_Storelocator
 #### New module added store_base https://github.com/manishiitg/store_base
 #### New module added Excellence_Slack https://github.com/manishiitg/slack
+#### New module added Excellence_Orderexport https://github.com/manishiitg/Orderexport
