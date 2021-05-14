@@ -19,3 +19,5 @@ http://excellencemagentoblog.com
 #### New module added store_base https://github.com/manishiitg/store_base
 #### New module added Excellence_Slack https://github.com/manishiitg/slack
 #### New module added Excellence_Orderexport https://github.com/manishiitg/Orderexport
+#### New module added Excellence_Trello https://github.com/manishiitg/Trello
+
