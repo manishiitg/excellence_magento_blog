@@ -22,4 +22,5 @@ http://excellencemagentoblog.com
 #### New module added Excellence_Orderexport https://github.com/manishiitg/Orderexport
 #### New module added Excellence_Trello https://github.com/manishiitg/Trello
 #### New module added Excellence_Twilio https://github.com/manishiitg/twilio
+#### New module added Excellence_Textlocal https://github.com/manishiitg/TextLocal-m2
 
