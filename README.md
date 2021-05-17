@@ -21,4 +21,5 @@ http://excellencemagentoblog.com
 #### New module added Excellence_Instagram  https://github.com/manishiitg/instagram.git
 #### New module added Excellence_Orderexport https://github.com/manishiitg/Orderexport
 #### New module added Excellence_Trello https://github.com/manishiitg/Trello
+#### New module added Excellence_Twilio https://github.com/manishiitg/twilio
 
