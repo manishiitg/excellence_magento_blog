@@ -24,4 +24,6 @@ http://excellencemagentoblog.com
 #### New module added Excellence_Twilio https://github.com/manishiitg/twilio
 #### New module added Excellence_Textlocal https://github.com/manishiitg/TextLocal-m2
 #### New module added Excellence_Msg91 https://github.com/manishiitg/msg91-m2
+#### New module added Excellence_AbandonCart https://github.com/manishiitg/AbandonCart
+
 
