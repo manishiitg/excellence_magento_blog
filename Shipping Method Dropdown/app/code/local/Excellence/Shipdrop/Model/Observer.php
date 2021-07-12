@@ -8,7 +8,7 @@ class Excellence_Shipdrop_Model_Observer {
 		
 		
 		if(!Mage::getSingleton('checkout/type_onepage')->getQuote()->getShippingAddress()->getCountryId()  && Mage::getSingleton('checkout/type_onepage')->getQuote()->getItemsCount()){
-			$country_id = 'IN';
+			$country_id = Mage::getStoreConfig('general/country/default');
 			$region_id = false;
 
 			$country = Mage::getModel('directory/country')->loadByCode($country_id);
@@ -22,7 +22,7 @@ class Excellence_Shipdrop_Model_Observer {
 			$customerSession=Mage::getSingleton("customer/session");
 			if($customerSession->isLoggedIn()){
 				$customerAddress=$customerSession->getCustomer()->getDefaultShippingAddress();
-				if($customerAddress->getId()){
+				if($customerAddress && $customerAddress->getId()){
 					$customerCountry=$customerAddress->getCountryId();
 					$region_id = $customerAddress->getRegionId();
 					$region = $customerAddress->getRegion();
